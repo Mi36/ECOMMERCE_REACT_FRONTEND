@@ -15,9 +15,7 @@ export const Product = ({ product }) => {
           </Card.Title>
         </Link>
         <Card.Text>
-          <div>
-            {product.rating} from {product.numReviews}
-          </div>
+          {product.rating} from {product.numReviews}
         </Card.Text>
         <Card.Text>${product.price}</Card.Text>
       </Card.Body>
