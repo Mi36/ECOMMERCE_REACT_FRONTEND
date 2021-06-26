@@ -8,8 +8,10 @@ const HomeScreen = () => {
 
   useEffect(() => {
     const fetchProducts = async () => {
-      const { data } = await axios.get("/api/products");
-      setProducts(data);
+      const { data } = await axios.get(
+        "https://ecommerce-rest-backend.herokuapp.com/api/products"
+      );
+      setProducts(data.products);
     };
 
     fetchProducts();
@@ -19,13 +21,14 @@ const HomeScreen = () => {
     <>
       <h1>Latest products</h1>
       <Row>
-        {products.map((product) => {
-          return (
-            <Col>
-              <Product product={product} />
-            </Col>
-          );
-        })}
+        {products.length > 0 &&
+          products.map((product) => {
+            return (
+              <Col key={product._id}>
+                <Product product={product} />
+              </Col>
+            );
+          })}
       </Row>
     </>
   );

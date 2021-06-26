@@ -8,7 +8,9 @@ export const ProductScreen = ({ match }) => {
   useEffect(() => {
     const fetchProducts = async () => {
       // this how we get params and use
-      const { data } = await axios.get(`/api/products/${match.params.id}`);
+      const { data } = await axios.get(
+        `https://ecommerce-rest-backend.herokuapp.com/api/products/${match.params.id}`
+      );
       setProducts(data);
     };
     fetchProducts();
