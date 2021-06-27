@@ -1,14 +1,24 @@
-import React, { useEffect } from "react";
-import { Button, Col, Image, ListGroup, Row } from "react-bootstrap";
+import React, { useEffect, useState } from "react";
+import { Button, Col, Form, Image, ListGroup, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { listProductsDetails } from "../actions/productActions";
 
-export const ProductScreen = ({ match }) => {
+const ProductScreen = ({ history, match }) => {
+  const [qty, setQty] = useState(0);
   const dispatch = useDispatch();
 
   const productDetails = useSelector((state) => state.productDetails);
   const { loading, error, product } = productDetails;
+  //this will make a number to an array 1->n
+  // assuming product.counterStock-->n
+  console.log([...Array(product.countInStock).keys()]);
+
+  const addToCartHandler = () => {
+    //props.history.push used to redirect to another page
+    history.push(`/cart/${match.params.id}?qty=${qty}`);
+  };
+
   useEffect(() => {
     // this how we get params and use
     dispatch(listProductsDetails(match.params.id));
@@ -47,8 +57,33 @@ export const ProductScreen = ({ match }) => {
                 status: {product.countInStock > 0 ? "In Stock" : "Out Of Stock"}
               </h3>
             </ListGroup.Item>
+            {product.countInStock > 0 && (
+              <ListGroup.Item>
+                <Row>
+                  <Col>Qty</Col>
+                  <Col>
+                    <Form.Control
+                      as="select"
+                      value={qty}
+                      onChange={(e) => setQty(e.target.value)}
+                    >
+                      {[...Array(product.countInStock).keys()].map((x) => {
+                        return (
+                          <option key={x + 1} value={x + 1}>
+                            {x + 1}
+                          </option>
+                        );
+                      })}
+                    </Form.Control>
+                  </Col>
+                </Row>
+              </ListGroup.Item>
+            )}
             <ListGroup.Item>
-              <Button disabled={product.countInStock > 0 ? false : true}>
+              <Button
+                disabled={product.countInStock > 0 ? false : true}
+                onClick={addToCartHandler}
+              >
                 Add To Cart
               </Button>
             </ListGroup.Item>
@@ -58,3 +93,5 @@ export const ProductScreen = ({ match }) => {
     </>
   );
 };
+
+export default ProductScreen;
