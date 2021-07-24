@@ -31,6 +31,11 @@ const App = () => {
             component={ProductListScreen}
             exact
           />
+          <Route
+            path="/admin/productlist/:pageNumber"
+            component={ProductListScreen}
+            exact
+          />
           <Route path="/order/:id" component={OrderScreen} exact />
           <Route path="/order/:id" component={OrderScreen} exact />
           <Route path="/register" component={RegisterScreen} exact />
@@ -42,7 +47,13 @@ const App = () => {
           {/* ? added to make id optional */}
           <Route path="/cart/:id?" component={CartScreen} />
           <Route path="/" component={HomeScreen} exact />
-          <Route path="/search/:keyword" component={HomeScreen} />
+          <Route path="/search/:keyword" component={HomeScreen} exact />
+          <Route path="/page/:pageNumber" component={HomeScreen} exact />
+          <Route
+            path="search/:keyword/page/:pageNumber"
+            component={HomeScreen}
+            exact
+          />
         </Container>
       </main>
       <Footer />

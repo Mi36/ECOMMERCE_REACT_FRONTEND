@@ -21,12 +21,12 @@ import {
 } from "../constants/productConstants";
 
 export const listProducts =
-  (keyword = "") =>
+  (keyword = "", pageNumber = "") =>
   async (dispatch) => {
     try {
       dispatch({ type: PRODUCTS_LIST_REQUEST });
       const { data } = await axios.get(
-        `https://ecommerce-rest-backend.herokuapp.com/api/products?keyword=${keyword}`
+        `https://ecommerce-rest-backend.herokuapp.com/api/products?keyword=${keyword}&pageNumber=${pageNumber}`
       );
       dispatch({ type: PRODUCTS_LIST_SUCCESS, payload: data?.products });
     } catch (error) {
