@@ -33,10 +33,6 @@ const ProductScreen = ({ history, match }) => {
   const userLogin = useSelector((state) => state.userLogin);
   const { loading, error, product } = productDetails;
 
-  const productReviewCreate = useSelector((state) => state.productReviewCreate);
-  const { success: successProductReview, error: errorProductReview } =
-    productReviewCreate;
-
   //this will make a number to an array 1->n
   // assuming product.counterStock-->n
   console.log([...Array(product.countInStock).keys()]);
@@ -45,6 +41,13 @@ const ProductScreen = ({ history, match }) => {
     //props.history.push used to redirect to another page
     history.push(`/cart/${match.params.id}?qty=${qty}`);
   };
+
+  const productReviewCreate = useSelector((state) => state.productReviewCreate);
+  const {
+    success: successProductReview,
+    loading: loadingProductReview,
+    error: errorProductReview,
+  } = productReviewCreate;
 
   const submitHandler = (e) => {
     e.preventDefault(); // this is used to submit form function to prevent page refresh
@@ -177,7 +180,7 @@ const ProductScreen = ({ history, match }) => {
                       Review submitted successfully
                     </Message>
                   )}
-                  {/* {loadingProductReview && <Loader />} */}
+                  {loadingProductReview && <Loader />}
                   {errorProductReview && (
                     <Message variant="danger">{errorProductReview}</Message>
                   )}

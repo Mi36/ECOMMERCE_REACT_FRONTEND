@@ -38,7 +38,7 @@ const HomeScreen = ({ match }) => {
       ) : (
         <>
           <Row>
-            {products.length > 0 &&
+            {products?.length > 0 &&
               products.map((product) => {
                 return (
                   <Col key={product._id}>
