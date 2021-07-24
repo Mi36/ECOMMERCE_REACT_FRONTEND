@@ -6,6 +6,7 @@ import {
   orderCreateReducer,
   orderDeliverReducer,
   orderDetailsReducer,
+  orderListMyReducer,
   orderListReducer,
   orderPayReducer,
 } from "./reducers/orderReducers";
@@ -49,6 +50,7 @@ const reducer = combineReducers({
   orderDeliver: orderDeliverReducer,
   productReviewCreate: productReviewCreateReducer,
   productTopRated: productTopRatedReducer,
+  orderListMy: orderListMyReducer,
 });
 
 const cartItemFromStorage = localStorage.getItem("cartItems")
