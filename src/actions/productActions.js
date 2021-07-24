@@ -1,5 +1,8 @@
 import axios from "axios";
 import {
+  PRODUCTS_CREATE_FAIL,
+  PRODUCTS_CREATE_REQUEST,
+  PRODUCTS_CREATE_SUCCESS,
   PRODUCTS_DELETE_FAIL,
   PRODUCTS_DELETE_REQUEST,
   PRODUCTS_DELETE_SUCCESS,
@@ -79,6 +82,45 @@ export const deleteProduct = (id) => async (dispatch, getState) => {
 
     dispatch({
       type: PRODUCTS_DELETE_FAIL,
+      payload: message,
+    });
+  }
+};
+
+export const createProduct = (id) => async (dispatch, getState) => {
+  try {
+    dispatch({
+      type: PRODUCTS_CREATE_REQUEST,
+    });
+
+    const {
+      userLogin: { userInfo },
+    } = getState();
+
+    const config = {
+      headers: {
+        Authorization: `Bearer ${userInfo.token}`,
+      },
+    };
+
+    const { data } = await axios.post(
+      `https://ecommerce-rest-backend.herokuapp.com/api/products`,
+      {},
+      config
+    );
+
+    dispatch({
+      type: PRODUCTS_CREATE_SUCCESS,
+      payload: data,
+    });
+  } catch (error) {
+    const message =
+      error.response && error.response.data.message
+        ? error.response.data.message
+        : error.message;
+
+    dispatch({
+      type: PRODUCTS_CREATE_FAIL,
       payload: message,
     });
   }

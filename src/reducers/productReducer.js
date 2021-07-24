@@ -1,4 +1,8 @@
 import {
+  PRODUCTS_CREATE_FAIL,
+  PRODUCTS_CREATE_REQUEST,
+  PRODUCTS_CREATE_RESET,
+  PRODUCTS_CREATE_SUCCESS,
   PRODUCTS_DELETE_FAIL,
   PRODUCTS_DELETE_REQUEST,
   PRODUCTS_DELETE_SUCCESS,
@@ -47,6 +51,21 @@ export const productDeleteReducer = (state = {}, action) => {
       return { loading: false, success: true };
     case PRODUCTS_DELETE_FAIL:
       return { loading: true, error: action.payload };
+    default:
+      return state;
+  }
+};
+
+export const productCreateReducer = (state = {}, action) => {
+  switch (action.type) {
+    case PRODUCTS_CREATE_REQUEST:
+      return { loading: true };
+    case PRODUCTS_CREATE_SUCCESS:
+      return { loading: false, success: true, product: action.payload };
+    case PRODUCTS_CREATE_FAIL:
+      return { loading: true, error: action.payload };
+    case PRODUCTS_CREATE_RESET:
+      return {};
     default:
       return state;
   }
