@@ -15,6 +15,9 @@ import {
   PRODUCTS_LIST_FAIL,
   PRODUCTS_LIST_REQUEST,
   PRODUCTS_LIST_SUCCESS,
+  PRODUCTS_TOP_FAIL,
+  PRODUCTS_TOP_REQUEST,
+  PRODUCTS_TOP_SUCCESS,
   PRODUCTS_UPDATE_FAIL,
   PRODUCTS_UPDATE_REQUEST,
   PRODUCTS_UPDATE_SUCCESS,
@@ -213,3 +216,21 @@ export const createProductReview =
       });
     }
   };
+
+export const listTopProducts = () => async (dispatch) => {
+  try {
+    dispatch({ type: PRODUCTS_TOP_REQUEST });
+    const { data } = await axios.get(
+      `https://ecommerce-rest-backend.herokuapp.com/api/products/top`
+    );
+    dispatch({ type: PRODUCTS_TOP_SUCCESS, payload: data?.products });
+  } catch (error) {
+    dispatch({
+      type: PRODUCTS_TOP_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
+};
