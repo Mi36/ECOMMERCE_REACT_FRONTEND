@@ -28,10 +28,11 @@ const ProductScreen = ({ history, match }) => {
   const dispatch = useDispatch();
 
   const productDetails = useSelector((state) => state.productDetails);
-  const { userInfo } = userLogin;
+  const { loading, error, product } = productDetails;
 
   const userLogin = useSelector((state) => state.userLogin);
-  const { loading, error, product } = productDetails;
+
+  const { userInfo } = userLogin;
 
   //this will make a number to an array 1->n
   // assuming product.counterStock-->n
