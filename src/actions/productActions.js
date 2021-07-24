@@ -12,6 +12,9 @@ import {
   PRODUCTS_LIST_FAIL,
   PRODUCTS_LIST_REQUEST,
   PRODUCTS_LIST_SUCCESS,
+  PRODUCTS_UPDATE_FAIL,
+  PRODUCTS_UPDATE_REQUEST,
+  PRODUCTS_UPDATE_SUCCESS,
 } from "../constants/productConstants";
 
 export const listProducts = () => async (dispatch) => {
@@ -121,6 +124,46 @@ export const createProduct = (id) => async (dispatch, getState) => {
 
     dispatch({
       type: PRODUCTS_CREATE_FAIL,
+      payload: message,
+    });
+  }
+};
+
+export const updateProduct = (product) => async (dispatch, getState) => {
+  try {
+    dispatch({
+      type: PRODUCTS_UPDATE_REQUEST,
+    });
+
+    const {
+      userLogin: { userInfo },
+    } = getState();
+
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${userInfo.token}`,
+      },
+    };
+
+    const { data } = await axios.put(
+      `https://ecommerce-rest-backend.herokuapp.com/api/products/${product._id}`,
+      product,
+      config
+    );
+
+    dispatch({
+      type: PRODUCTS_UPDATE_SUCCESS,
+      payload: data,
+    });
+  } catch (error) {
+    const message =
+      error.response && error.response.data.message
+        ? error.response.data.message
+        : error.message;
+
+    dispatch({
+      type: PRODUCTS_UPDATE_FAIL,
       payload: message,
     });
   }
