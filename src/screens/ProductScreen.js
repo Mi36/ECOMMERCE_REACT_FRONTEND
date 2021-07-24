@@ -17,6 +17,7 @@ import {
 import Loader from "../components/Loader";
 import Message from "../components/Message";
 import Meta from "../components/Meta";
+import Rating from "../components/Rating";
 import { PRODUCTS_CREATE_REVIEW_RESET } from "../constants/productConstants";
 
 const ProductScreen = ({ history, match }) => {
@@ -176,7 +177,7 @@ const ProductScreen = ({ history, match }) => {
                       Review submitted successfully
                     </Message>
                   )}
-                  {loadingProductReview && <Loader />}
+                  {/* {loadingProductReview && <Loader />} */}
                   {errorProductReview && (
                     <Message variant="danger">{errorProductReview}</Message>
                   )}

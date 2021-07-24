@@ -6,8 +6,8 @@ import { useDispatch, useSelector } from "react-redux";
 import Message from "../components/Message";
 import Loader from "../components/Loader";
 import FormContainer from "../components/FormContainer";
-import { listProductDetails, updateProduct } from "../actions/productActions";
-import { PRODUCT_UPDATE_RESET } from "../constants/productConstants";
+import { listProductsDetails, updateProduct } from "../actions/productActions";
+import { PRODUCTS_UPDATE_RESET } from "../constants/productConstants";
 
 const ProductEditScreen = ({ match, history }) => {
   const productId = match.params.id;
@@ -35,11 +35,11 @@ const ProductEditScreen = ({ match, history }) => {
 
   useEffect(() => {
     if (successUpdate) {
-      dispatch({ type: PRODUCT_UPDATE_RESET });
+      dispatch({ type: PRODUCTS_UPDATE_RESET });
       history.push("/admin/productlist");
     } else {
       if (!product.name || product._id !== productId) {
-        dispatch(listProductDetails(productId));
+        dispatch(listProductsDetails(productId));
       } else {
         setName(product.name);
         setPrice(product.price);
