@@ -2,6 +2,9 @@ import axios from "axios";
 import {
   PRODUCTS_CREATE_FAIL,
   PRODUCTS_CREATE_REQUEST,
+  PRODUCTS_CREATE_REVIEW_FAIL,
+  PRODUCTS_CREATE_REVIEW_REQUEST,
+  PRODUCTS_CREATE_REVIEW_SUCCESS,
   PRODUCTS_CREATE_SUCCESS,
   PRODUCTS_DELETE_FAIL,
   PRODUCTS_DELETE_REQUEST,
@@ -168,3 +171,43 @@ export const updateProduct = (product) => async (dispatch, getState) => {
     });
   }
 };
+
+export const createProductReview =
+  (productId, review) => async (dispatch, getState) => {
+    try {
+      dispatch({
+        type: PRODUCTS_CREATE_REVIEW_REQUEST,
+      });
+
+      const {
+        userLogin: { userInfo },
+      } = getState();
+
+      const config = {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${userInfo.token}`,
+        },
+      };
+
+      await axios.post(
+        `https://ecommerce-rest-backend.herokuapp.com/api/products/${productId}/reviews`,
+        review,
+        config
+      );
+
+      dispatch({
+        type: PRODUCTS_CREATE_REVIEW_SUCCESS,
+      });
+    } catch (error) {
+      const message =
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message;
+
+      dispatch({
+        type: PRODUCTS_CREATE_REVIEW_FAIL,
+        payload: message,
+      });
+    }
+  };
