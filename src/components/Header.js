@@ -49,7 +49,7 @@ const Header = () => {
           </Link>
         )}
 
-        {userInfo && !userInfo.isAdmin && (
+        {userInfo && userInfo.isAdmin && (
           <div class="dropdown">
             <span>ADMIN</span>
             <div class="dropdown-content">
