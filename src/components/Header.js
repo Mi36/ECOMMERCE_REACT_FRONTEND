@@ -15,13 +15,16 @@ const Header = () => {
 
   return (
     <header className={styles.header}>
-      <div id="navbar" className="navbar">
-        <h1 className="logo">
-          <span className="text-primary">
-            <i className="fas fa-shopping-cart"></i>MI-
-          </span>
-          SHOP
-        </h1>
+      <div className="navbar">
+        <Link to="/" className="navbar-logo">
+          <h1 className="logo">
+            <span className="text-primary">
+              <i className="fas fa-shopping-cart"></i>MI-
+            </span>
+            SHOP
+          </h1>
+        </Link>
+
         <nav>
           <ul>
             <li>
