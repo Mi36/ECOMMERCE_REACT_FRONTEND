@@ -2,7 +2,7 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, Route } from "react-router-dom";
 import { logout } from "../actions/userActions";
-import "../css/style.css";
+import styles from "../styles/header.module.css";
 import SearchBox from "./SearchBox";
 
 const Header = () => {
@@ -14,8 +14,8 @@ const Header = () => {
   const logoutHandler = () => dispatch(logout());
 
   return (
-    <header class="hero">
-      <div id="navbar" class="navbar">
+    <header className={styles.header}>
+      <div id="navbar" className="navbar">
         <h1 className="logo">
           <span className="text-primary">
             <i className="fas fa-shopping-cart"></i>MI-
@@ -34,7 +34,7 @@ const Header = () => {
         <Route render={({ history }) => <SearchBox history={history} />} />
 
         {userInfo ? (
-          <div class="dropdown">
+          <div className={styles.dropdown}>
             <span>{userInfo.name}</span>
             <div class="dropdown-content">
               <Link to="/profile" className="navbar-logo">
@@ -48,6 +48,7 @@ const Header = () => {
             SIGN IN
           </Link>
         )}
+
         {userInfo && !userInfo.isAdmin && (
           <div class="dropdown">
             <span>ADMIN</span>
