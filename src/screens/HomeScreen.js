@@ -21,9 +21,7 @@ const HomeScreen = ({ match }) => {
     <>
       <Meta />
 
-      <Link to="/" className="btn btn-li">
-        GO BACK
-      </Link>
+      <Link to="/">GO BACK</Link>
 
       <h1>Latest products</h1>
       {loading ? (
