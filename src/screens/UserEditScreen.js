@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import { Form, Button } from "react-bootstrap";
+import React, { useEffect, useState } from "react";
+import { Form } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import Message from "../components/Message";
-import Loader from "../components/Loader";
-import FormContainer from "../components/FormContainer";
+import { Link } from "react-router-dom";
 import { getUserDetails, updateUser } from "../actions/userActions";
+import FormContainer from "../components/FormContainer";
+import Loader from "../components/Loader";
+import Message from "../components/Message";
 import { USER_UPDATE_RESET } from "../constants/userConstants";
 
 const UserEditScreen = ({ match, history }) => {
@@ -91,9 +91,7 @@ const UserEditScreen = ({ match, history }) => {
               ></Form.Check>
             </Form.Group>
 
-            <Button type="submit" variant="primary">
-              Update
-            </Button>
+            <button type="submit">Update</button>
           </Form>
         )}
       </FormContainer>
