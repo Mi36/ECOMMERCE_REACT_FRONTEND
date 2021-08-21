@@ -1,11 +1,10 @@
-import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import { Form, Button, Row, Col } from "react-bootstrap";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import Message from "../components/Message";
-import Loader from "../components/Loader";
-import FormContainer from "../components/FormContainer";
+import { Link } from "react-router-dom";
 import { register } from "../actions/userActions";
+import FormContainer from "../components/FormContainer";
+import Loader from "../components/Loader";
+import Message from "../components/Message";
 
 const RegisterScreen = ({ location, history }) => {
   const [name, setName] = useState("");
@@ -42,60 +41,61 @@ const RegisterScreen = ({ location, history }) => {
       {message && <Message variant="danger">{message}</Message>}
       {error && <Message variant="danger">{error}</Message>}
       {loading && <Loader />}
-      <Form onSubmit={submitHandler}>
-        <Form.Group controlId="name">
-          <Form.Label>Name</Form.Label>
-          <Form.Control
-            type="name"
+
+      <form onSubmit={submitHandler}>
+        <label>
+          Name:
+          <input
+            type="email"
+            name="name"
             placeholder="Enter name"
             value={name}
             onChange={(e) => setName(e.target.value)}
-          ></Form.Control>
-        </Form.Group>
-
-        <Form.Group controlId="email">
-          <Form.Label>Email Address</Form.Label>
-          <Form.Control
+          />
+        </label>
+        <label>
+          Email Address:
+          <input
             type="email"
-            placeholder="Enter email"
+            name="name"
             value={email}
+            placeholder="Enter email"
             onChange={(e) => setEmail(e.target.value)}
-          ></Form.Control>
-        </Form.Group>
-
-        <Form.Group controlId="password">
-          <Form.Label>Password</Form.Label>
-          <Form.Control
+          />
+        </label>
+        <label>
+          Password:
+          <input
             type="password"
+            name="name"
             placeholder="Enter password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-          ></Form.Control>
-        </Form.Group>
+          />
+        </label>
 
-        <Form.Group controlId="confirmPassword">
-          <Form.Label>Confirm Password</Form.Label>
-          <Form.Control
+        <label>
+          Confirm Password:
+          <input
             type="password"
-            placeholder="Confirm password"
+            name="name"
+            placeholder="Enter password"
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
-          ></Form.Control>
-        </Form.Group>
+          />
+        </label>
 
-        <Button type="submit" variant="primary">
-          Register
-        </Button>
-      </Form>
+        <input type="submit" value="Submit" />
+      </form>
 
-      <Row>
-        <Col>
+      <div>
+        <div>
           Have an Account?{" "}
           <Link to={redirect ? `/login?redirect=${redirect}` : "/login"}>
             Login
           </Link>
-        </Col>
-      </Row>
+        </div>
+      </div>
     </FormContainer>
   );
 };
