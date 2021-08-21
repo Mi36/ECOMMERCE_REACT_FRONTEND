@@ -1,11 +1,10 @@
-import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import { Form, Button, Row, Col } from "react-bootstrap";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import Message from "../components/Message";
-import Loader from "../components/Loader";
-import FormContainer from "../components/FormContainer";
+import { Link } from "react-router-dom";
 import { login } from "../actions/userActions";
+import FormContainer from "../components/FormContainer";
+import Loader from "../components/Loader";
+import Message from "../components/Message";
 
 const LoginScreen = ({ location, history }) => {
   const [email, setEmail] = useState("");
@@ -37,40 +36,38 @@ const LoginScreen = ({ location, history }) => {
       <h1>Sign In</h1>
       {error && <Message variant="danger">{error}</Message>}
       {loading && <Loader />}
-      <Form onSubmit={submitHandler}>
-        <Form.Group controlId="email">
-          <Form.Label>Email Address</Form.Label>
-          <Form.Control
+      <form onSubmit={submitHandler}>
+        <label>
+          Email Address:
+          <input
             type="email"
-            placeholder="Enter email"
+            name="name"
             value={email}
+            placeholder="Enter email"
             onChange={(e) => setEmail(e.target.value)}
-          ></Form.Control>
-        </Form.Group>
-
-        <Form.Group controlId="password">
-          <Form.Label>Password</Form.Label>
-          <Form.Control
+          />
+        </label>
+        <label>
+          Password:
+          <input
             type="password"
+            name="name"
             placeholder="Enter password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-          ></Form.Control>
-        </Form.Group>
+          />
+        </label>
+        <input type="submit" value="Submit" />
+      </form>
 
-        <Button type="submit" variant="primary">
-          Sign In
-        </Button>
-      </Form>
-
-      <Row>
-        <Col>
+      <div>
+        <div>
           New Customer?{" "}
           <Link to={redirect ? `/register?redirect=${redirect}` : "/register"}>
             Register
           </Link>
-        </Col>
-      </Row>
+        </div>
+      </div>
     </FormContainer>
   );
 };
