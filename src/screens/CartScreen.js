@@ -1,13 +1,5 @@
 import React, { useEffect } from "react";
-import {
-  Button,
-  Card,
-  Col,
-  Form,
-  Image,
-  ListGroup,
-  Row,
-} from "react-bootstrap";
+import { Form } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { addToCart, removeFromCart } from "../actions/cartActions";
@@ -35,28 +27,25 @@ const CartScreen = ({ match, location, history }) => {
   };
 
   return (
-    <Row>
-      {/* 8 columns */}
-      <Col md={8}>
+    <div>
+      <div>
         <h1>Shopping Cart</h1>
         {cartItems.length === 0 ? (
           <Message>
             Your cart is empty<Link to="/">Go back</Link>
           </Message>
         ) : (
-          <ListGroup>
+          <div>
             {cartItems.map((item) => (
-              <ListGroup.Item key={item.product}>
-                <Row>
-                  <Col>
-                    {/* fluid used if image goes outer scope */}
-                    <Image src={item.image} alt={item.name} fluid />
-                  </Col>
-                  <Col>
+              <div key={item.product}>
+                <div>
+                  <img src={item.image} alt={item.name} />
+
+                  <div>
                     <Link to={`/product/${item.product}`}>{item.name}</Link>
-                  </Col>
-                  <Col>${item.price}</Col>
-                  <Col>
+                  </div>
+                  <div>${item.price}</div>
+                  <div>
                     <Form.Control
                       as="select"
                       value={item.qty}
@@ -74,50 +63,43 @@ const CartScreen = ({ match, location, history }) => {
                         );
                       })}
                     </Form.Control>
-                    <Col>
-                      <Button
+                    <div>
+                      <button
                         type="button"
-                        variant="light"
                         onClick={() => removeFromCartHandler(item.product)}
                       >
                         remove
-                      </Button>
-                    </Col>
-                  </Col>
-                </Row>
-              </ListGroup.Item>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
             ))}
-          </ListGroup>
+          </div>
         )}
-      </Col>
-      <Col md={2}>
-        <Card>
-          <ListGroup>
-            <ListGroup.Item>
-              <h2>
-                Subtotal ({cartItems.reduce((acc, item) => acc + item.qty, 0)}
-                )items
-              </h2>
-              $
-              {cartItems
-                .reduce((acc, item) => acc + item.qty * item.price, 0)
-                .toFixed(2)}
-            </ListGroup.Item>
-            <ListGroup.Item>
-              <Button
-                type="button"
-                className="btn-block"
-                disabled={cartItems.length === 0}
-                onClick={checkoutHandler}
-              >
-                Proceed to checkout
-              </Button>
-            </ListGroup.Item>
-          </ListGroup>
-        </Card>
-      </Col>
-      <Col md={2}></Col>
-    </Row>
+      </div>
+      <div>
+        <div>
+          <h2>
+            Subtotal ({cartItems.reduce((acc, item) => acc + item.qty, 0)}
+            )items
+          </h2>
+          $
+          {cartItems
+            .reduce((acc, item) => acc + item.qty * item.price, 0)
+            .toFixed(2)}
+        </div>
+        <div>
+          <button
+            type="button"
+            disabled={cartItems.length === 0}
+            onClick={checkoutHandler}
+          >
+            Proceed to checkout
+          </button>
+        </div>
+      </div>
+    </div>
   );
 };
 
