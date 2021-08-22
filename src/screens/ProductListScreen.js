@@ -1,15 +1,15 @@
 import React, { useEffect } from "react";
-import { LinkContainer } from "react-router-bootstrap";
-import { Table, Button, Row, Col } from "react-bootstrap";
+import { Table } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import Message from "../components/Message";
-import Loader from "../components/Loader";
-import Paginate from "../components/Paginate";
+import { LinkContainer } from "react-router-bootstrap";
 import {
-  listProducts,
-  deleteProduct,
   createProduct,
+  deleteProduct,
+  listProducts,
 } from "../actions/productActions";
+import Loader from "../components/Loader";
+import Message from "../components/Message";
+import Paginate from "../components/Paginate";
 import { PRODUCTS_CREATE_RESET } from "../constants/productConstants";
 
 const ProductListScreen = ({ history, match }) => {
@@ -72,16 +72,15 @@ const ProductListScreen = ({ history, match }) => {
 
   return (
     <>
-      <Row className="align-items-center">
-        <Col>
-          <h1>Products</h1>
-        </Col>
-        <Col className="text-right">
-          <Button className="my-3" onClick={createProductHandler}>
+      <div className="align-items-center">
+        <h1>Products</h1>
+
+        <div>
+          <button onClick={createProductHandler}>
             <i className="fas fa-plus"></i> Create Product
-          </Button>
-        </Col>
-      </Row>
+          </button>
+        </div>
+      </div>
       {loadingDelete && <Loader />}
       {errorDelete && <Message variant="danger">{errorDelete}</Message>}
       {loadingCreate && <Loader />}
@@ -113,9 +112,9 @@ const ProductListScreen = ({ history, match }) => {
                   <td>{product.brand}</td>
                   <td>
                     <LinkContainer to={`/admin/product/${product._id}/edit`}>
-                      <Button variant="light" className="btn-sm">
+                      <button className="btn-sm">
                         <i className="fas fa-edit"></i>
-                      </Button>
+                      </button>
                     </LinkContainer>
                     <button
                       variant="danger"

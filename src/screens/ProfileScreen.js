@@ -18,7 +18,7 @@ const ProfileScreen = ({ location, history }) => {
   const dispatch = useDispatch();
 
   const userDetails = useSelector((state) => state.userDetails);
-  const { loading, error, user } = userDetails;
+  const { loading, error, userInfo: user } = userDetails;
 
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
@@ -45,6 +45,7 @@ const ProfileScreen = ({ location, history }) => {
       }
     }
   }, [dispatch, history, userInfo, user, success]);
+  console.log(`user`, user);
 
   const submitHandler = (e) => {
     e.preventDefault();
