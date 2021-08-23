@@ -36,7 +36,12 @@ const HomeScreen = ({ match }) => {
                 <div className={styles.header}>
                   <div>
                     <div>
-                      <img src={product.image} alt="product" />
+                      <img
+                        src={product.image}
+                        alt="product"
+                        height="440px"
+                        width="440px"
+                      />
                     </div>
                   </div>
                   <div>
