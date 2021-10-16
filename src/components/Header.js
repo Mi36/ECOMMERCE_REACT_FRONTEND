@@ -19,9 +19,9 @@ const Header = () => {
         <Link to="/" className="navbar-logo">
           <h1 className="logo">
             <span className="text-primary">
-              <i className="fas fa-shopping-cart"></i>MI-
+              <i className="fas fa-shopping-cart"></i>Get
             </span>
-            SHOP
+            Easy
           </h1>
         </Link>
 

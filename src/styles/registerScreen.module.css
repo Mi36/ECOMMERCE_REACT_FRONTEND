@@ -1,0 +1,49 @@
+.header {
+  background-color: aliceblue;
+}
+.py3 {
+  padding: 30px 0;
+}
+
+.py1 {
+  padding: 10px 0;
+}
+.py2 {
+  padding: 20px 0;
+}
+
+.container {
+  margin: auto;
+  max-width: 1100px;
+  overflow: auto;
+  padding: 0 20px;
+}
+
+.lheading {
+  font-size: 40px;
+  line-height: 1.2;
+}
+
+.textPrimary {
+  color: #f7c08a;
+}
+
+.formGroup {
+  margin-bottom: 20px;
+}
+.btn {
+  display: inline-block;
+  font-size: 18px;
+  color: #fff;
+  background: #333;
+  padding: 8px 20px;
+  border: none;
+  cursor: pointer;
+}
+.submitContainer {
+  display: flex;
+  align-items: center;
+}
+.accountAlready {
+  padding-left: 10px;
+}

@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { listProducts } from "../actions/productActions";
 import Meta from "../components/Meta";
-import styles from "../styles/homeScreen.module.css";
 
 const HomeScreen = ({ match }) => {
   const dispatch = useDispatch();
@@ -18,7 +17,7 @@ const HomeScreen = ({ match }) => {
   const productList = useSelector((state) => state.productList);
   const { loading, error, products } = productList;
   return (
-    <>
+    <div>
       <Meta />
 
       <Link to="/">GO BACK</Link>
@@ -29,11 +28,16 @@ const HomeScreen = ({ match }) => {
       ) : error ? (
         <h3>{error}</h3>
       ) : (
-        <>
+        <div
+          style={{
+            marginTop: 120,
+            marginBottom: 120,
+          }}
+        >
           {products?.length > 0 &&
             products.map((product) => {
               return (
-                <div className={styles.header}>
+                <div>
                   <div>
                     <div>
                       <img
@@ -115,9 +119,9 @@ const HomeScreen = ({ match }) => {
                 </div>
               );
             })}
-        </>
+        </div>
       )}
-    </>
+    </div>
   );
 };
 

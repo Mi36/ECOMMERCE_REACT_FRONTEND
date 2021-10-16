@@ -5,6 +5,7 @@ import { login } from "../actions/userActions";
 import FormContainer from "../components/FormContainer";
 import Loader from "../components/Loader";
 import Message from "../components/Message";
+import styles from "../styles/loginScreen.module.css";
 
 const LoginScreen = ({ location, history }) => {
   const [email, setEmail] = useState("");
@@ -32,43 +33,92 @@ const LoginScreen = ({ location, history }) => {
   };
 
   return (
-    <FormContainer>
-      <h1>Sign In</h1>
-      {error && <Message variant="danger">{error}</Message>}
-      {loading && <Loader />}
-      <form onSubmit={submitHandler}>
-        <label>
-          Email Address:
-          <input
-            type="email"
-            name="name"
-            value={email}
-            placeholder="Enter email"
-            onChange={(e) => setEmail(e.target.value)}
-          />
-        </label>
-        <label>
-          Password:
-          <input
-            type="password"
-            name="name"
-            placeholder="Enter password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </label>
-        <input type="submit" value="Submit" />
-      </form>
+    <section className={styles.py3}>
+      <div className={styles.container}>
+        <h1 className={styles.lheading}>
+          <span className={styles.textPrimary}>Sign</span> In
+        </h1>
+        {error && <Message variant="danger">{error}</Message>}
+        {loading && <Loader />}
+        <form onSubmit={submitHandler}>
+          <label>Email</label>
+          <div className={styles.formGroup}>
+            <input
+              type="email"
+              size="50"
+              name="name"
+              value={email}
+              placeholder="Enter email"
+              onChange={(e) => setEmail(e.target.value)}
+            />
+          </div>
 
-      <div>
-        <div>
-          New Customer?{" "}
-          <Link to={redirect ? `/register?redirect=${redirect}` : "/register"}>
-            Register
-          </Link>
-        </div>
+          <label>Password</label>
+          <div className={styles.formGroup}>
+            <input
+              type="password"
+              size="50"
+              name="name"
+              placeholder="Enter password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </div>
+
+          <div className={styles.submitContainer}>
+            <button type="submit" className={styles.btn}>
+              Submit
+            </button>
+
+            <div className={styles.accountAlready}>
+              New Customer?{" "}
+              <Link
+                to={redirect ? `/register?redirect=${redirect}` : "/register"}
+              >
+                Register
+              </Link>
+            </div>
+          </div>
+        </form>
       </div>
-    </FormContainer>
+    </section>
+    // <FormContainer>
+    //   <h1>Sign In</h1>
+    //   {error && <Message variant="danger">{error}</Message>}
+    //   {loading && <Loader />}
+    //   <form onSubmit={submitHandler}>
+    //     <label>
+    //       Email Address:
+    //       <input
+    //         type="email"
+    //         name="name"
+    //         value={email}
+    //         placeholder="Enter email"
+    //         onChange={(e) => setEmail(e.target.value)}
+    //       />
+    //     </label>
+    //     <label>
+    //       Password:
+    //       <input
+    //         type="password"
+    //         name="name"
+    //         placeholder="Enter password"
+    //         value={password}
+    //         onChange={(e) => setPassword(e.target.value)}
+    //       />
+    //     </label>
+    //     <input type="submit" value="Submit" />
+    //   </form>
+
+    //   <div>
+    //     <div>
+    //       New Customer?{" "}
+    //       <Link to={redirect ? `/register?redirect=${redirect}` : "/register"}>
+    //         Register
+    //       </Link>
+    //     </div>
+    //   </div>
+    // </FormContainer>
   );
 };
 

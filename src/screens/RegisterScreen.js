@@ -2,9 +2,9 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { register } from "../actions/userActions";
-import FormContainer from "../components/FormContainer";
 import Loader from "../components/Loader";
 import Message from "../components/Message";
+import styles from "../styles/registerScreen.module.css";
 
 const RegisterScreen = ({ location, history }) => {
   const [name, setName] = useState("");
@@ -36,67 +36,74 @@ const RegisterScreen = ({ location, history }) => {
   };
 
   return (
-    <FormContainer>
-      <h1>Sign Up</h1>
-      {message && <Message variant="danger">{message}</Message>}
-      {error && <Message variant="danger">{error}</Message>}
-      {loading && <Loader />}
+    <section className={styles.py3}>
+      <div className={styles.container}>
+        <h1 className={styles.lheading}>
+          <span className={styles.textPrimary}>Sign</span> Up
+        </h1>
+        {message && <Message variant="danger">{message}</Message>}
+        {error && <Message variant="danger">{error}</Message>}
+        {loading && <Loader />}
+        <form onSubmit={submitHandler}>
+          <label>Name</label>
+          <div className={styles.formGroup}>
+            <input
+              type="text"
+              name="name"
+              size="50"
+              placeholder="Enter name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+            />
+          </div>
+          <label>Email</label>
+          <div className={styles.formGroup}>
+            <input
+              type="email"
+              name="name"
+              size="50"
+              value={email}
+              placeholder="Enter email"
+              onChange={(e) => setEmail(e.target.value)}
+            />
+          </div>
+          <label>Password</label>
+          <div className={styles.formGroup}>
+            <input
+              type="password"
+              name="name"
+              size="50"
+              placeholder="Enter password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </div>
+          <label>Confirm password</label>
+          <div className={styles.formGroup}>
+            <input
+              type="password"
+              name="name"
+              size="50"
+              placeholder="Enter password"
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+            />
+          </div>
+          <div className={styles.submitContainer}>
+            <button type="submit" className={styles.btn}>
+              Submit
+            </button>
 
-      <form onSubmit={submitHandler}>
-        <label>
-          Name:
-          <input
-            type="email"
-            name="name"
-            placeholder="Enter name"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-          />
-        </label>
-        <label>
-          Email Address:
-          <input
-            type="email"
-            name="name"
-            value={email}
-            placeholder="Enter email"
-            onChange={(e) => setEmail(e.target.value)}
-          />
-        </label>
-        <label>
-          Password:
-          <input
-            type="password"
-            name="name"
-            placeholder="Enter password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </label>
-
-        <label>
-          Confirm Password:
-          <input
-            type="password"
-            name="name"
-            placeholder="Enter password"
-            value={confirmPassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}
-          />
-        </label>
-
-        <input type="submit" value="Submit" />
-      </form>
-
-      <div>
-        <div>
-          Have an Account?{" "}
-          <Link to={redirect ? `/login?redirect=${redirect}` : "/login"}>
-            Login
-          </Link>
-        </div>
+            <div className={styles.accountAlready}>
+              Have an Account?{" "}
+              <Link to={redirect ? `/login?redirect=${redirect}` : "/login"}>
+                Login
+              </Link>
+            </div>
+          </div>
+        </form>
       </div>
-    </FormContainer>
+    </section>
   );
 };
 
