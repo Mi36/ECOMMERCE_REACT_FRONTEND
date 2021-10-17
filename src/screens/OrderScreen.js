@@ -93,7 +93,7 @@ const OrderScreen = ({ match, history }) => {
   ) : error ? (
     <Message variant="danger">{error}</Message>
   ) : (
-    <>
+    <div style={{ marginBottom: 120 }}>
       <h1>Order {order._id}</h1>
       <div>
         <div>
@@ -212,7 +212,7 @@ const OrderScreen = ({ match, history }) => {
           )}
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

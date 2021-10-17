@@ -27,7 +27,7 @@ const CartScreen = ({ match, location, history }) => {
   };
 
   return (
-    <div>
+    <div style={{ marginBottom: 120 }}>
       <div>
         <h1>Shopping Cart</h1>
         {cartItems.length === 0 ? (

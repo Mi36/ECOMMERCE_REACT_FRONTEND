@@ -39,7 +39,6 @@ const App = () => {
             exact
           />
           <Route path="/order/:id" component={OrderScreen} exact />
-          <Route path="/order/:id" component={OrderScreen} exact />
           <Route path="/register" component={RegisterScreen} exact />
           <Route path="/profile" component={ProfileScreen} exact />
           <Route path="/product/:id" component={ProductScreen} />

@@ -60,100 +60,93 @@ const PlaceOrderScreen = ({ history }) => {
   };
 
   return (
-    <>
+    <div style={{ marginBottom: 110 }}>
       <CheckoutSteps step1 step2 step3 step4 />
+      <div>
+        <div>
+          <h2>Shipping</h2>
+          <p>
+            <strong>Address:</strong>
+            {cart.shippingAddress.address}, {cart.shippingAddress.city}{" "}
+            {cart.shippingAddress.postalCode}, {cart.shippingAddress.country}
+          </p>
+        </div>
+
+        <div>
+          <h2>Payment Method</h2>
+          <strong>Method: </strong>
+          {cart.paymentMethod}
+        </div>
+
+        <div>
+          <h2>Order Items</h2>
+          {cart.cartItems.length === 0 ? (
+            <Message>Your cart is empty</Message>
+          ) : (
+            <div>
+              {cart.cartItems.map((item, index) => (
+                <div key={index}>
+                  <div>
+                    <div>
+                      <img src={item.image} alt={item.name} />
+                    </div>
+                    <div>
+                      <Link to={`/product/${item.product}`}>{item.name}</Link>
+                    </div>
+                    <div>
+                      {item.qty} x ${item.price} = ${item.qty * item.price}
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+      </div>
       <div>
         <div>
           <div>
             <div>
-              <h2>Shipping</h2>
-              <p>
-                <strong>Address:</strong>
-                {cart.shippingAddress.address}, {cart.shippingAddress.city}{" "}
-                {cart.shippingAddress.postalCode},{" "}
-                {cart.shippingAddress.country}
-              </p>
+              <h2>Order Summary</h2>
             </div>
-
-            <div>
-              <h2>Payment Method</h2>
-              <strong>Method: </strong>
-              {cart.paymentMethod}
-            </div>
-
-            <div>
-              <h2>Order Items</h2>
-              {cart.cartItems.length === 0 ? (
-                <Message>Your cart is empty</Message>
-              ) : (
-                <div>
-                  {cart.cartItems.map((item, index) => (
-                    <div key={index}>
-                      <div>
-                        <div>
-                          <img src={item.image} alt={item.name} />
-                        </div>
-                        <div>
-                          <Link to={`/product/${item.product}`}>
-                            {item.name}
-                          </Link>
-                        </div>
-                        <div>
-                          {item.qty} x ${item.price} = ${item.qty * item.price}
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              )}
-            </div>
-          </div>
-        </div>
-        <div>
-          <div>
             <div>
               <div>
-                <h2>Order Summary</h2>
+                <div>Items</div>
+                <div>${cart.itemsPrice}</div>
               </div>
+            </div>
+            <div>
               <div>
-                <div>
-                  <div>Items</div>
-                  <div>${cart.itemsPrice}</div>
-                </div>
+                <div>Shipping</div>
+                <div>${cart.shippingPrice}</div>
               </div>
+            </div>
+            <div>
               <div>
-                <div>
-                  <div>Shipping</div>
-                  <div>${cart.shippingPrice}</div>
-                </div>
+                <div>Tax</div>
+                <div>${cart.taxPrice}</div>
               </div>
+            </div>
+            <div>
               <div>
-                <div>
-                  <div>Tax</div>
-                  <div>${cart.taxPrice}</div>
-                </div>
+                <div>Total</div>
+                <div>${cart.totalPrice}</div>
               </div>
-              <div>
-                <div>
-                  <div>Total</div>
-                  <div>${cart.totalPrice}</div>
-                </div>
-              </div>
-              <div>{error && <Message variant="danger">{error}</Message>}</div>
-              <div>
-                <button
-                  type="button"
-                  disabled={cart.cartItems === 0}
-                  onClick={placeOrderHandler}
-                >
-                  Place Order
-                </button>
-              </div>
+            </div>
+            <div>{error && <Message variant="danger">{error}</Message>}</div>
+            <div>
+              <button
+                type="button"
+                disabled={cart.cartItems === 0}
+                onClick={placeOrderHandler}
+              >
+                Place Order
+              </button>
             </div>
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
