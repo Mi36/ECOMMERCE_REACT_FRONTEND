@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Form, Table } from "react-bootstrap";
+import { Table } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { LinkContainer } from "react-router-bootstrap";
 import { listMyOrders } from "../actions/orderActions";
@@ -7,6 +7,7 @@ import { getUserDetails, updateUserProfile } from "../actions/userActions";
 import Loader from "../components/Loader";
 import Message from "../components/Message";
 import { USER_UPDATE_PROFILE_RESET } from "../constants/userConstants";
+import styles from "../styles/profileScreen.module.css";
 
 const ProfileScreen = ({ location, history }) => {
   const [name, setName] = useState("");
@@ -61,56 +62,57 @@ const ProfileScreen = ({ location, history }) => {
       <div>
         <h2>User Profile</h2>
         {message && <Message variant="danger">{message}</Message>}
-        {}
         {success && <Message variant="success">Profile Updated</Message>}
         {loading ? (
           <Loader />
         ) : error ? (
           <Message variant="danger">{error}</Message>
         ) : (
-          <Form onSubmit={submitHandler}>
-            <Form.Group controlId="name">
-              <Form.Label>Name</Form.Label>
-              <Form.Control
+          <form onSubmit={submitHandler}>
+            <label>Name</label>
+            <div className={styles.formGroup}>
+              <input
                 type="name"
                 placeholder="Enter name"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
-              ></Form.Control>
-            </Form.Group>
+              />
+            </div>
 
-            <Form.Group controlId="email">
-              <Form.Label>Email Address</Form.Label>
-              <Form.Control
+            <label>Email Address</label>
+            <div className={styles.formGroup}>
+              <input
                 type="email"
                 placeholder="Enter email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-              ></Form.Control>
-            </Form.Group>
+              ></input>
+            </div>
 
-            <Form.Group controlId="password">
-              <Form.Label>Password</Form.Label>
-              <Form.Control
+            <label>Password</label>
+            <div className={styles.formGroup}>
+              <input
                 type="password"
                 placeholder="Enter password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-              ></Form.Control>
-            </Form.Group>
+              ></input>
+            </div>
 
-            <Form.Group controlId="confirmPassword">
-              <Form.Label>Confirm Password</Form.Label>
-              <Form.Control
+            <label>Confirm Password</label>
+            <div className={styles.formGroup}>
+              <input
                 type="password"
                 placeholder="Confirm password"
                 value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
-              ></Form.Control>
-            </Form.Group>
+              ></input>
+            </div>
 
-            <button type="submit">Update</button>
-          </Form>
+            <button type="submit" className={styles.btn}>
+              Update
+            </button>
+          </form>
         )}
       </div>
       <div>
