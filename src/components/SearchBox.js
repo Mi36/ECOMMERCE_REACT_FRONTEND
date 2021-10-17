@@ -15,12 +15,20 @@ const SearchBox = ({ history }) => {
   return (
     <form onSubmit={submitHandler}>
       <input
+        style={{ width: 300, borderRadius: 10 }}
         type="text"
         placeholder="Search Products..."
         name="search"
         onChange={(e) => setKeyword(e.target.value)}
       />
-      <button type="submit">
+      <button
+        type="submit"
+        style={{
+          borderWidth: 1,
+          borderRadius: 20,
+          marginTop: 5,
+        }}
+      >
         <i class="fa fa-search"></i>
       </button>
     </form>

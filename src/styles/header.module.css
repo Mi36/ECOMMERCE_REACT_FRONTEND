@@ -1,21 +1,51 @@
-.bigblue {
-  color: DodgerBlue;
-  padding: 40px;
-  font-family: Arial;
-  text-align: center;
+.container {
+  margin: auto;
+  overflow: auto;
+  padding: 0 20px;
 }
-.header {
-  background-color: cadetblue;
+/* Navbar */
+.navbar {
+  /* background properties combined aayi nalkan */
+  background-color: lightgreen;
+  color: #fff;
+  overflow: auto;
+  /* background shows no matter what due to above */
 }
-.header {
-  padding: 20px;
-  clear: both;
-  border: 1px groove #aaaaaa;
-  background: #333;
-  color: White;
+.textPrimary {
+  color: "brown";
+}
+
+.a {
+  color: crimson;
+  text-decoration: none;
+  text-transform: none;
+}
+/* left koduthal container inte leftil ee element varutham */
+.logo {
+  float: left;
+  padding-top: 20px;
+}
+
+.ul {
+  /* to remove bullets */
+  list-style: none;
+  /* items rightil varan */
+  float: right;
+}
+/* ul li -kodukkm or just li kodukkam. just for readability and understanding */
+.li {
+  /* ivide left koduthal ee perticular containerinte left aakum */
+  float: left;
+}
+
+.suba {
+  /* block upayokikkan karanam padding add cheyyan. otherwise nadakkilla, a oru inline aanu by default */
+  display: block;
+  padding: 10px;
+  margin: 10px;
   text-align: center;
-  position: fixed;
-  top: 0px;
-  width: 100%;
-  height: 100px;
+  background-color: brown;
+  border-radius: 10px;
+  margin-left: 2px;
+  margin-right: 2px;
 }
