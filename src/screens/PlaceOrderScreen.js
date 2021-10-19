@@ -88,7 +88,11 @@ const PlaceOrderScreen = ({ history }) => {
                 <div key={index}>
                   <div>
                     <div>
-                      <img src={item.image} alt={item.name} />
+                      <img
+                        src={item.image}
+                        alt={item.name}
+                        style={{ height: 400, width: 400 }}
+                      />
                     </div>
                     <div>
                       <Link to={`/product/${item.product}`}>{item.name}</Link>

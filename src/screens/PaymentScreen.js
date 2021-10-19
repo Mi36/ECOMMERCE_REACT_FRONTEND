@@ -37,17 +37,11 @@ const PaymentScreen = ({ history }) => {
             onChange={(e) => setPaymentMethod(e.target.value)}
           />
         </label>
-        <label>
-          Stripe:
-          <input
-            type="radio"
-            id="Stripe"
-            name="paymentMethod"
-            value="Stripe"
-            onChange={(e) => setPaymentMethod(e.target.value)}
-          />
-        </label>
-        <input type="submit" value="Submit" />
+        <input
+          type="submit"
+          value="Submit"
+          style={{ marginLeft: 25, backgroundColor: "pink" }}
+        />
       </form>
     </div>
   );
