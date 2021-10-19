@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { login } from "../actions/userActions";
+import Footer from "../components/Footer";
 import Loader from "../components/Loader";
 import Message from "../components/Message";
 import styles from "../styles/loginScreen.module.css";
@@ -81,43 +82,6 @@ const LoginScreen = ({ location, history }) => {
         </form>
       </div>
     </section>
-    // <FormContainer>
-    //   <h1>Sign In</h1>
-    //   {error && <Message variant="danger">{error}</Message>}
-    //   {loading && <Loader />}
-    //   <form onSubmit={submitHandler}>
-    //     <label>
-    //       Email Address:
-    //       <input
-    //         type="email"
-    //         name="name"
-    //         value={email}
-    //         placeholder="Enter email"
-    //         onChange={(e) => setEmail(e.target.value)}
-    //       />
-    //     </label>
-    //     <label>
-    //       Password:
-    //       <input
-    //         type="password"
-    //         name="name"
-    //         placeholder="Enter password"
-    //         value={password}
-    //         onChange={(e) => setPassword(e.target.value)}
-    //       />
-    //     </label>
-    //     <input type="submit" value="Submit" />
-    //   </form>
-
-    //   <div>
-    //     <div>
-    //       New Customer?{" "}
-    //       <Link to={redirect ? `/register?redirect=${redirect}` : "/register"}>
-    //         Register
-    //       </Link>
-    //     </div>
-    //   </div>
-    // </FormContainer>
   );
 };
 

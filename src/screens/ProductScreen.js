@@ -64,7 +64,7 @@ const ProductScreen = ({ history, match }) => {
   }, [match, dispatch, successProductReview]);
   return (
     //my-3 means-> marginvertical here
-    <>
+    <div style={{ marginBottom: 100 }}>
       <Link className="btn btn-dark my-3" to="/">
         Go Back
       </Link>
@@ -76,7 +76,11 @@ const ProductScreen = ({ history, match }) => {
         <>
           <Meta title={product.name} />
           <div>
-            <img src={product.image} alt={product.name} />
+            <img
+              src={product.image}
+              alt={product.name}
+              style={{ width: 300, height: 300 }}
+            />
 
             <div>
               <div>
@@ -210,7 +214,7 @@ const ProductScreen = ({ history, match }) => {
           </div>
         </>
       )}
-    </>
+    </div>
   );
 };
 

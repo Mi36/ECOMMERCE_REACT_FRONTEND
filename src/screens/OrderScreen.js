@@ -141,7 +141,11 @@ const OrderScreen = ({ match, history }) => {
                 <div key={index}>
                   <div>
                     <div>
-                      <img src={item.image} alt={item.name} />
+                      <img
+                        src={item.image}
+                        alt={item.name}
+                        style={{ width: 300, height: 300 }}
+                      />
                     </div>
                     <div>
                       <Link to={`/product/${item.product}`}>{item.name}</Link>

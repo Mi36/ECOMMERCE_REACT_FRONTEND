@@ -58,7 +58,7 @@ const ProfileScreen = ({ location, history }) => {
   };
 
   return (
-    <div>
+    <div style={{ marginBottom: 130 }}>
       <div>
         <h2>User Profile</h2>
         {message && <Message variant="danger">{message}</Message>}

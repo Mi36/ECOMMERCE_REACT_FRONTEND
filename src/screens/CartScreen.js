@@ -39,7 +39,11 @@ const CartScreen = ({ match, location, history }) => {
             {cartItems.map((item) => (
               <div key={item.product}>
                 <div>
-                  <img src={item.image} alt={item.name} />
+                  <img
+                    src={item.image}
+                    alt={item.name}
+                    style={{ width: 300, height: 300 }}
+                  />
 
                   <div>
                     <Link to={`/product/${item.product}`}>{item.name}</Link>
