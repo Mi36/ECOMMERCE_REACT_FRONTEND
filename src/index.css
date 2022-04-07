@@ -1,3 +1,9 @@
 main {
   min-height: 50vh;
 }
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
