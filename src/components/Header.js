@@ -11,85 +11,97 @@ const Header = () => {
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
 
-  const logoutHandler = () => dispatch(logout());
+  const logoutHandler = () => {
+    dispatch(logout());
+  };
 
   return (
-    <header>
-      <nav id="navbar" className={styles.navbar}>
-        <div className={styles.container}>
+    <header className={styles.hero}>
+      <div className={styles.navbar}>
+        <Link to="/">
           <h1 className={styles.logo}>
             <span className={styles.textPrimary}>
               <i className="fas fa-shopping-cart"></i>
+              Shop
             </span>
-            <Link to="/" className={styles.a}>
-              OnPick
-            </Link>
+            Easy
           </h1>
-
-          <ul className={styles.ul}>
-            <li className={styles.li}>
-              <div
-                style={{
-                  paddingRight: 5,
-                  paddingTop: 20,
-                }}
-              >
-                <Route
-                  render={({ history }) => <SearchBox history={history} />}
-                />
-              </div>
+        </Link>
+        <nav>
+          <ul>
+            <li>
+              <Link to="/cart">Cart</Link>
             </li>
-            <li className={styles.li}>
-              <Link to="/cart" className={styles.suba}>
-                Cart
-              </Link>
-            </li>
-            {userInfo && (
-              <li className={styles.li}>
-                <Link to="/profile" className={styles.suba}>
-                  PROFILE
-                </Link>
-              </li>
-            )}
-            {userInfo && (
-              <li className={styles.li}>
-                <button onClick={logoutHandler} className={styles.suba}>
-                  Logout
-                </button>
+            {!userInfo && (
+              <li>
+                <Link to="/profile">Profile</Link>
               </li>
             )}
             {!userInfo && (
-              <li className={styles.li}>
-                <Link to="/login" className={styles.suba}>
-                  LOGIN
-                </Link>
+              <li>
+                <Link to="/login">Login</Link>
               </li>
             )}
-            {userInfo && userInfo.isAdmin && (
-              <li className={styles.li}>
-                <Link to="/admin/userlist" className={styles.suba}>
-                  USERS
-                </Link>
-              </li>
-            )}
-            {userInfo && userInfo.isAdmin && (
-              <li className={styles.li}>
-                <Link to="/admin/productlist" className={styles.suba}>
-                  PRODUCTS
-                </Link>
-              </li>
-            )}
-            {userInfo && userInfo.isAdmin && (
-              <li className={styles.li}>
-                <Link to="/admin/orderlist" className={styles.suba}>
-                  ORDERS
-                </Link>
+            {!userInfo && (
+              <li>
+                <Link onClick={logoutHandler}>Logout</Link>
               </li>
             )}
           </ul>
-        </div>
-      </nav>
+        </nav>
+      </div>
     </header>
+    // <header>
+    //   <nav id="navbar" className={styles.navbar}>
+    //     <div className={styles.container}>
+    //       <h1 className={styles.logo}>
+    //         <span className={styles.textPrimary}>
+    //           <i className="fas fa-shopping-cart"></i>
+    //         </span>
+    //         <Link to="/" className={styles.a}>
+    //           OnPick
+    //         </Link>
+    //       </h1>
+
+    //       <ul className={styles.ul}>
+    //         <li className={styles.li}>
+    //           <div
+    //             style={{
+    //               paddingRight: 5,
+    //               paddingTop: 20,
+    //             }}
+    //           >
+    //             <Route
+    //               render={({ history }) => <SearchBox history={history} />}
+    //             />
+    //           </div>
+    //         </li>
+    //         </li>
+    //         {userInfo && userInfo.isAdmin && (
+    //           <li className={styles.li}>
+    //             <Link to="/admin/userlist" className={styles.suba}>
+    //               USERS
+    //             </Link>
+    //           </li>
+    //         )}
+    //         {userInfo && userInfo.isAdmin && (
+    //           <li className={styles.li}>
+    //             <Link to="/admin/productlist" className={styles.suba}>
+    //               PRODUCTS
+    //             </Link>
+    //           </li>
+    //         )}
+    //         {userInfo && userInfo.isAdmin && (
+    //           <li className={styles.li}>
+    //             <Link to="/admin/orderlist" className={styles.suba}>
+    //               ORDERS
+    //             </Link>
+    //           </li>
+    //         )}
+    //       </ul>
+    //     </div>
+    //   </nav>
+    // </header>
   );
 };
 
