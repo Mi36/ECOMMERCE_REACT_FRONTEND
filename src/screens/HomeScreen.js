@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { listProducts } from "../actions/productActions";
 import Meta from "../components/Meta";
+import styles from "../styles/homeScreen.module.css";
 
 const HomeScreen = ({ match }) => {
   const dispatch = useDispatch();
@@ -17,7 +18,7 @@ const HomeScreen = ({ match }) => {
   const productList = useSelector((state) => state.productList);
   const { loading, error, products } = productList;
   return (
-    <div style={{}}>
+    <div style={{ marginTop: 70 }}>
       <Meta />
       <div
         style={{
@@ -25,20 +26,6 @@ const HomeScreen = ({ match }) => {
           flexDirection: "row",
         }}
       >
-        <Link
-          to="/"
-          style={{
-            textDecoration: "none",
-            backgroundColor: "brown",
-            borderRadius: 10,
-            paddingLeft: 5,
-            paddingRight: 5,
-            alignSelf: "center",
-            color: "white",
-          }}
-        >
-          GO BACK
-        </Link>
         <h1
           style={{
             textAlign: "center",
@@ -47,7 +34,7 @@ const HomeScreen = ({ match }) => {
             paddingLeft: 100,
           }}
         >
-          Latest products
+          All products
         </h1>
       </div>
 
@@ -60,19 +47,21 @@ const HomeScreen = ({ match }) => {
           style={{
             marginTop: 30,
             marginBottom: 120,
+            display: "flex",
+            flexWrap: "wrap",
           }}
         >
           {products?.length > 0 &&
             products.map((product) => {
               return (
-                <div style={{}}>
-                  <img
-                    style={{}}
-                    src={product.image}
-                    alt="product"
-                    height="440px"
-                    width="440px"
-                  />
+                <div className={styles.card}>
+                  <img src={product.image} alt="Denim Jeans"></img>
+                  <h1>Tailored Jeans</h1>
+                  <p className={styles.price}>{product.price}</p>
+                  <p>Some text about the jeans..</p>
+                  <p>
+                    <button>Add to Cart</button>
+                  </p>
 
                   <div>
                     <h2>{product.category}</h2>

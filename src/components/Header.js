@@ -18,90 +18,70 @@ const Header = () => {
   return (
     <header className={styles.hero}>
       <div className={styles.navbar}>
-        <Link to="/">
-          <h1 className={styles.logo}>
-            <span className={styles.textPrimary}>
-              <i className="fas fa-shopping-cart"></i>
-              Shop
-            </span>
+        <Link className={styles.link} to="/">
+          <h1
+            style={{
+              margin: 0,
+            }}
+          >
+            Shop
+            <i className="fas fa-shopping-cart"></i>
             Easy
           </h1>
         </Link>
-        <nav>
-          <ul>
+
+        <ul>
+          <li>
+            <Link className={styles.link} to="/cart">
+              Cart
+            </Link>
+          </li>
+          {!userInfo && (
             <li>
-              <Link to="/cart">Cart</Link>
+              <Link className={styles.link} to="/profile">
+                Profile
+              </Link>
             </li>
-            {!userInfo && (
-              <li>
-                <Link to="/profile">Profile</Link>
-              </li>
-            )}
-            {!userInfo && (
-              <li>
-                <Link to="/login">Login</Link>
-              </li>
-            )}
-            {!userInfo && (
-              <li>
-                <Link onClick={logoutHandler}>Logout</Link>
-              </li>
-            )}
-          </ul>
-        </nav>
+          )}
+          {!userInfo && (
+            <li>
+              <Link className={styles.link} to="/login">
+                Login
+              </Link>
+            </li>
+          )}
+          {!userInfo && (
+            <li>
+              <button className={styles.button} onClick={logoutHandler}>
+                Logout
+              </button>
+            </li>
+          )}
+          {userInfo && userInfo.isAdmin && (
+            <li>
+              <Link className={styles.link} to="/admin/userlist">
+                USERS
+              </Link>
+            </li>
+          )}
+          {userInfo && userInfo.isAdmin && (
+            <li>
+              <Link className={styles.link} to="/admin/productlist">
+                PRODUCTS
+              </Link>
+            </li>
+          )}
+          {userInfo && userInfo.isAdmin && (
+            <li>
+              <Link className={styles.link} to="/admin/orderlist">
+                ORDERS
+              </Link>
+            </li>
+          )}
+          {/* <Route render={({ history }) => <SearchBox history={history} />} /> */}
+        </ul>
       </div>
     </header>
-    // <header>
-    //   <nav id="navbar" className={styles.navbar}>
-    //     <div className={styles.container}>
-    //       <h1 className={styles.logo}>
-    //         <span className={styles.textPrimary}>
-    //           <i className="fas fa-shopping-cart"></i>
-    //         </span>
-    //         <Link to="/" className={styles.a}>
-    //           OnPick
-    //         </Link>
-    //       </h1>
-
-    //       <ul className={styles.ul}>
-    //         <li className={styles.li}>
-    //           <div
-    //             style={{
-    //               paddingRight: 5,
-    //               paddingTop: 20,
-    //             }}
-    //           >
-    //             <Route
-    //               render={({ history }) => <SearchBox history={history} />}
-    //             />
-    //           </div>
-    //         </li>
-    //         </li>
-    //         {userInfo && userInfo.isAdmin && (
-    //           <li className={styles.li}>
-    //             <Link to="/admin/userlist" className={styles.suba}>
-    //               USERS
-    //             </Link>
-    //           </li>
-    //         )}
-    //         {userInfo && userInfo.isAdmin && (
-    //           <li className={styles.li}>
-    //             <Link to="/admin/productlist" className={styles.suba}>
-    //               PRODUCTS
-    //             </Link>
-    //           </li>
-    //         )}
-    //         {userInfo && userInfo.isAdmin && (
-    //           <li className={styles.li}>
-    //             <Link to="/admin/orderlist" className={styles.suba}>
-    //               ORDERS
-    //             </Link>
-    //           </li>
-    //         )}
-    //       </ul>
-    //     </div>
-    //   </nav>
-    // </header>
   );
 };
 
